@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meal Catalog</title>
+    <style>
+        img { max-height: 150px;  }
+        .meal { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; }
+    h1{
+   color:red;
+  padding:0px;
+    }
+  /* optional:hide print button while printing*/
+   @media print{
+   .no-print{
+    display:none;
+    }
+    }
+
+    </style>
+</head>
+<body bgcolor=yellow>
+<marquee>
+<h1>Mother Theresa Computer Applications</h1>
+</marquee>
+    <h1>Menu items</h1>
+ 
+    {% for meal in meals %}
+        <div class="meal">
+            {% if meal.image %}
+                <img src="{{ meal.image.url }}" alt="{{ meal.name }}">
+            {% endif %}
+            <h2><a href="{% url 'meal_detail' meal.pk %}">{{ meal.name }}</a></h2>
+            <p>${{meal.price }}</p>
+        </div>
+
+    {% endfor %}
+<button onclick="window.print()" class="no-print">print this page</button>
+  </body>
+</html>
